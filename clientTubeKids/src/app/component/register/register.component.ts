@@ -43,11 +43,19 @@ export class RegisterComponent implements OnInit {
       country:this.country,
       date:this.date
 
-    
+      
     };
+    console.log(newUser);
+    this.firstName = '';
+        this.surnames = '';
+        this.email = '';
+        this.password = '';
+        this.repeatPassword = '';
+        this.country = '';
     this.userServices.addUser(newUser)
       .subscribe(user => {
         this.users.push(user);
+        console.log(this.users);
         this.firstName = '';
         this.surnames = '';
         this.email = '';

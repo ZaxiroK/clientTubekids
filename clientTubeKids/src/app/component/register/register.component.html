@@ -29,7 +29,7 @@
           </div>
           <form id="Register" (submit) = "addUser($event)">
             <div class="form-group">
-              <input type="firstname" name= "firstname" [(ngModel)]="firstname"  id="inputFirstname" placeholder="First Name" class="form-control">
+              <input type="firstName" name= "firstName" [(ngModel)]="firstName"  id="inputFirstname" placeholder="First Name" class="form-control">
             </div>
             <div class="form-group">
                 <input type="surnames" name= "surnames" [(ngModel)]="surnames" class="form-control" id="inputSurnames" placeholder="Surnames">
@@ -44,7 +44,7 @@
               </div>
 
             <div class="form-group">
-              <input type="repeat-password" name= "repeatPassword" [(ngModel)]="repeatPassword" class="form-control" id="inputRepeat-password" placeholder="Repeat-password">
+              <input type="password" name= "repeatPassword" [(ngModel)]="repeatPassword" class="form-control" id="inputRepeat-password" placeholder="Repeat-password">
             </div>
 
             <div class="form-group">
