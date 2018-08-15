@@ -15,6 +15,8 @@ import { LoginComponent } from './component/login/login.component';
 import { HomeComponent } from './component/home/home.component';
 import { InicioComponent } from './component/inicio/inicio.component';
 import { PerfilesComponent } from './component/perfiles/perfiles.component';
+import { MyPlaylistComponent } from './component/my-playlist/my-playlist.component';
+import { ManageProfilesComponent } from './component/manage-profiles/manage-profiles.component';
 
 
 
@@ -26,6 +28,8 @@ import { PerfilesComponent } from './component/perfiles/perfiles.component';
     HomeComponent,
     InicioComponent,
     PerfilesComponent,
+    MyPlaylistComponent,
+    ManageProfilesComponent,
     
   ],
   imports: [
