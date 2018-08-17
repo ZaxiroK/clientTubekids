@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   repeatPassword: string;
   country: string;
   date: Date;
-
+  
   constructor(private userServices: UsersService) { 
     this.userServices.getUsers()
     .subscribe(users => {
@@ -46,12 +46,6 @@ export class RegisterComponent implements OnInit {
       
     };
     console.log(newUser);
-    this.firstName = '';
-        this.surnames = '';
-        this.email = '';
-        this.password = '';
-        this.repeatPassword = '';
-        this.country = '';
     this.userServices.addUser(newUser)
       .subscribe(user => {
         this.users.push(user);
@@ -65,36 +59,50 @@ export class RegisterComponent implements OnInit {
         
       })        
   }
-/*
-  deleteTask(id) {
+
+  deleteUser(id) {
     const response = confirm('are you sure to delete it?');
     if (response ){
-      const tasks = this.tasks;
-      this.taskService.deleteTask(id)
+      const users = this.users;
+      this.userServices.deleteUser(id)
         .subscribe(data => {
           console.log(data.n);
           if(data.n == 1) {
-            for(let i = 0; i < tasks.length; i++) {
-              if(tasks[i]._id == id) {
-                tasks.splice(i, 1);
+            for(let i = 0; i < users.length; i++) {
+              if(users[i]._id == id) {
+                users.splice(i, 1);
               }
             }
           }
         })
     }
   }                 
+  
 
-  updateStatus(task: Task) {
-    var newTask = {            
-      _id: task._id,
-      title: task.title,
-      isDone: !task.isDone
+  updateUser(user: User) {
+    var newUser = {            
+      _id: user._id,
+      firstName: user.firstName,
+      surnames: user.surnames,
+      email: user.email,
+      password: user.password,
+      repeatPassword: user.repeatPassword,
+      country: user.country,
+      date:user.date
     };
-    this.taskService.updateTask(newTask)
-      .subscribe(res => {
-        task.isDone = !task.isDone;
-      })
+    this.userServices.updateUser(newUser)
+    .subscribe(user => {
+      this.users.push(user);
+      console.log(this.users);
+      this.firstName = '';
+      this.surnames = '';
+      this.email = '';
+      this.password = '';
+      this.repeatPassword = '';
+      this.country = '';
+      
+    })
   }
 
-*/
+
 }
