@@ -27,52 +27,103 @@
             <p>Complete all the information
             </p>
           </div>
-          <form id="Register" name="Register"(submit) = "addUser($event)">
-            <div class="form-group"
-            [class.has.error]="fn.invalid && fn.touched"
-            [class.has.success]="fn.valid">
-              
-              <input type="text" name= "firstName" [(ngModel)]="firstName" required id="firstName" placeholder="First Name" class="form-control" #fn="ngModel" >
-              <span class = "help-block"
-              *ngIf="fn.invalid && fn.touched">
-              Required
-            </span>
-              
-              
-              
+          <form id="Register" #registerForm="ngForm" name="Register"(submit) = "addUser($event)">
+            <div class="form-group">
+              <input type="text" name= "firstName" [(ngModel)]="user.firstName" required minlength="3" maxlength="30" id="firstName" placeholder="First Name" class="form-control" #firstName="ngModel" >
+              <div *ngIf ="firstName.errors && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+               <div [hidden]="!firstName.errors.required">
+                 Firstname is required!
+               </div> 
+               <div [hidden]="!firstName.errors.minlength">
+                 Firstname must be at least 3 characters long.
+               </div>
+               <div [hidden]="!firstName.errors.maxlength">
+                 Firstname can not be more than 13 characters long.
+               </div>
+              </div>
             </div>
-            <!--<div class="form-group">
-              <input type="text" name= "firstName" [(ngModel)]="firstName" required minlength="5" maxlength="30" placeholder="First Name" class="form-control" #name="ngModel" >
-            </div>-->
+         
+
+            
+                <div class="form-group">
+                <input type="text" name= "surnames" [(ngModel)]="user.surnames" class="form-control" required maxlength="30" id="surnames" placeholder="Surnames" #surnames="ngModel">
+                <div *ngIf ="surnames.errors && (surnames.dirty || surnames.touched)" class="alert alert-danger">
+                  <div [hidden]="!surnames.errors.required">
+                    Surnames are required!
+                  </div> 
+                  
+                  <div [hidden]="!surnames.errors.maxlength">
+                    Surnames can not be more than 30 characters long.
+                  </div>
+                 </div>
+            </div>
 
             <div class="form-group">
-                <input type="text" name= "surnames" [(ngModel)]="surnames" class="form-control" id="inputSurnames" placeholder="Surnames">
+                <input type="text" name= "email" [(ngModel)]="user.email" class="form-control"  required id="email" placeholder="Email" #email="ngModel">
+                <div *ngIf ="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+                  <div [hidden]="!email.errors.required">
+                    Email is required!
+                  </div> 
+          
+                 </div>
             </div>
           
-            <div class="form-group">
-                <input type="text" name= "email" [(ngModel)]="email" class="form-control" id="inputEmail" placeholder="Email Address">
+        
+              
+                  <div class="form-group">
+                  <input type="password" name= "password" [(ngModel)]="user.password" class="form-control" required minlength="6" maxlength="30" id="password" placeholder="Password" #password="ngModel">
+                  <div *ngIf ="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
+                    <div [hidden]="!password.errors.required">
+                      Password is required!
+                    </div> 
+                    <div [hidden]="!password.errors.minlength">
+                      Password  must be at least 6 characters long.
+                    </div>
+                    <div [hidden]="!password.errors.maxlength">
+                      Password can not be more than 30 characters long.
+                    </div>
+                   </div>
               </div>
 
-              <div class="form-group">
-                  <input type="password" name= "password" [(ngModel)]="password" class="form-control" id="inputPassword" placeholder="Password">
-              </div>
-
             <div class="form-group">
-              <input type="password" name= "repeatPassword" [(ngModel)]="repeatPassword" class="form-control" id="inputRepeat-password" placeholder="Repeat-password">
+              <input type="password" name= "repeatPassword" [(ngModel)]="user.repeatPassword" class="form-control" required minlength="6" maxlength="30" id="repeatPassword" placeholder="Repeat-password" #repeatPassword="ngModel">
+              <div *ngIf ="repeatPassword.errors && (repeatPassword.dirty || repeatPassword.touched)" class="alert alert-danger">
+                  <div [hidden]="!repeatPassword.errors.required">
+                    Repeat password is required!
+                  </div> 
+                  <div [hidden]="!repeatPassword.errors.minlength">
+                      Repeat password must be at least 6 characters long.
+                  </div>
+                  <div [hidden]="!repeatPassword.errors.maxlength">
+                      Repeat password can not be more than 30 characters long.
+                  </div>
+                 </div>
             </div>
 
             <div class="form-group">
-                <input type="text" name= "country" [(ngModel)]="country" class="form-control" id="inputCountry" placeholder="Country">
+                <input type="text" name= "country" [(ngModel)]="user.country" class="form-control" required id="country" placeholder="Country" #country="ngModel">
+                <div *ngIf ="country.errors && (country.dirty || country.touched)" class="alert alert-danger">
+                    <div [hidden]="!country.errors.required">
+                      Repeat password is required!
+                    </div> 
             </div>
+          </div>
 
             <div class="form-group">
-                    <input id="date" name= "date" [(ngModel)]="date" type="date">
+                    <input required id="fecha" name= "fecha" [(ngModel)]="user.fecha" type="date" #fecha="ngModel">
+                    <div *ngIf ="fecha.errors && (fecha.dirty || fecha.touched)" class="alert alert-danger">
+                        <div [hidden]="!fecha.errors.required">
+                          Date  is required!
+                        </div> 
+                        
+                       </div>
+            
               </div>
-
-            <button type="submit" class="btn btn-primary">Login
-            </button>
+              
+            <button type="submit" [disabled]="!registerForm.form.valid" class="btn btn-primary">Login</button>
           </form>
         </div>
+      
        
         <p class="botto-text"> TubeKids
         </p>

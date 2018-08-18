@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { UsersService } from '../../services/users.service';
 import { User } from '../../models/User';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -10,55 +11,72 @@ import { User } from '../../models/User';
   providers: [UsersService]
 })
 export class RegisterComponent implements OnInit {
+  //FrmRegister: FormGroup;
+
   users: User[];
-  firstName: string;
-  surnames: string;
-  email: string;
-  password: string;
-  repeatPassword: string;
-  country: string;
-  date: Date;
+  user = new  User();
+
+ 
+
   
-  constructor(private userServices: UsersService) { 
-    this.userServices.getUsers()
+  constructor(private userServices: UsersService/*, private fb: FormBuilder*/) {
+   /* this.FrmRegister = this.fb.group({
+      firstName: ['',Validators.required],
+      surnames: ['',Validators.required],
+      email: ['',Validators.email],
+      password: ['',Validators.required],
+      repeatPassword: ['',Validators.required],
+      country: ['',Validators.required],
+      fecha: ['',Validators.required],
+    })*/
+
+    
+  
+   /* this.userServices.getUsers()
     .subscribe(users => {
       console.log(users);
     this.users = users;
 
   });
-
+*/
   }
 
   ngOnInit() {
   }
 
+  register(){
+    
+  }
+ /*$scope.validarEmail = function() {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test($scope.email);
+}
+[17:07, 16/8/2018] Wilmer: <div class="col-md-4 col-xs-12"></div>
+                    <div class="col-md-8 col-xs-12 ">
+                        <p class="error" ng-show="!validarEmail();">Email Inválido</p>
+
+                    </div>*/
   addUser(event){
     event.preventDefault();
-    const newUser:User = {
-      firstName: this.firstName,
-      surnames:this.surnames,
-      email:this.email,
-      password:this.password,
-      repeatPassword:this.repeatPassword,
-      country:this.country,
-      date:this.date
-
-      
-    };
-    console.log(newUser);
-    this.userServices.addUser(newUser)
+    validation(this.user);
+    
+   console.log(this.user.firstName);
+    this.userServices.addUser(this.user)
       .subscribe(user => {
         this.users.push(user);
         console.log(this.users);
-        this.firstName = '';
-        this.surnames = '';
-        this.email = '';
-        this.password = '';
-        this.repeatPassword = '';
-        this.country = '';
+        user = new User;
         
-      })        
+      })       
+  
+  function validation(user){
+    if(!user.firstName || !user.surnames || !user.email || !user.password || !user.fecha ||
+      user.firstName == " "|| user.surnames == "" || user.email == ""|| user.password == ""|| user.fecha == ""){
+      alert("Por favor que revise todos los datos esten completos para su registro");
+      
+    }
   }
+/* 
 
   deleteUser(id) {
     const response = confirm('are you sure to delete it?');
@@ -86,22 +104,21 @@ export class RegisterComponent implements OnInit {
       surnames: user.surnames,
       email: user.email,
       password: user.password,
-      repeatPassword: user.repeatPassword,
       country: user.country,
-      date:user.date
+      date:user.fecha
     };
     this.userServices.updateUser(newUser)
     .subscribe(user => {
       this.users.push(user);
       console.log(this.users);
-      this.firstName = '';
+     this.firstName = '';
       this.surnames = '';
       this.email = '';
       this.password = '';
       this.repeatPassword = '';
       this.country = '';
-      
-    })
+     
+    })*/
   }
 
 
