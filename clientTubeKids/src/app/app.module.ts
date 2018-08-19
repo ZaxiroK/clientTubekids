@@ -18,6 +18,7 @@ import { PerfilesComponent } from './component/perfiles/perfiles.component';
 import { MyPlaylistComponent } from './component/my-playlist/my-playlist.component';
 import { ManageProfilesComponent } from './component/manage-profiles/manage-profiles.component';
 
+import {TrimValueAccessorModule} from 'ng-trim-value-accessor';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { ManageProfilesComponent } from './component/manage-profiles/manage-prof
     HttpClientModule, 
     FormsModule,
     ReactiveFormsModule, 
-    HttpModule
+    HttpModule,
+    TrimValueAccessorModule
     
   ],
   providers: [UsersService],
