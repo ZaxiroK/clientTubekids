@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { UsersService } from '../../services/users.service';
 import { User } from '../../models/User';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-register',
@@ -11,24 +11,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   providers: [UsersService]
 })
 export class RegisterComponent implements OnInit {
-  //FrmRegister: FormGroup;
-
   users: User[];
   user = new  User();
 
  
 
   
-  constructor(private userServices: UsersService/*, private fb: FormBuilder*/) {
-   /* this.FrmRegister = this.fb.group({
-      firstName: ['',Validators.required],
-      surnames: ['',Validators.required],
-      email: ['',Validators.email],
-      password: ['',Validators.required],
-      repeatPassword: ['',Validators.required],
-      country: ['',Validators.required],
-      fecha: ['',Validators.required],
-    })*/
+  constructor(private userServices: UsersService) {
 
     
   
@@ -44,18 +33,11 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  register(){
+ 
     
-  }
- /*$scope.validarEmail = function() {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test($scope.email);
-}
-[17:07, 16/8/2018] Wilmer: <div class="col-md-4 col-xs-12"></div>
-                    <div class="col-md-8 col-xs-12 ">
-                        <p class="error" ng-show="!validarEmail();">Email Inválido</p>
 
-                    </div>*/
+
+
   addUser(event){
     event.preventDefault();
     validation(this.user);
@@ -67,12 +49,13 @@ export class RegisterComponent implements OnInit {
         console.log(this.users);
         user = new User;
         
-      })       
+      })    
+      
+  
   
   function validation(user){
-    if(!user.firstName || !user.surnames || !user.email || !user.password || !user.fecha ||
-      user.firstName == " "|| user.surnames == "" || user.email == ""|| user.password == ""|| user.fecha == ""){
-      alert("Por favor que revise todos los datos esten completos para su registro");
+    if(user.firstName == " "|| user.surnames == " " || user.email == " "|| user.password == " "|| user.fecha == " "){
+      alert("no se permiten espacion en blanco");
       
     }
   }
