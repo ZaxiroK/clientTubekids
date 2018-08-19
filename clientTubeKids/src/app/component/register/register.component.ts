@@ -40,25 +40,30 @@ export class RegisterComponent implements OnInit {
 
   addUser(event){
     event.preventDefault();
-    validation(this.user);
-    
-   console.log(this.user.firstName);
+    this.validation(this.user);
     this.userServices.addUser(this.user)
       .subscribe(user => {
         this.users.push(user);
         console.log(this.users);
         user = new User;
-        
-      })    
-      
-  
-  
-  function validation(user){
-    if(user.firstName == " "|| user.surnames == " " || user.email == " "|| user.password == " "|| user.fecha == " "){
-      alert("no se permiten espacion en blanco");
-      
+        alert("Registro Exitoso, revise su correo para activar su cuenta");
+
+      });    
     }
-  }
+
+     validation= function(user){
+      if(user.firstName == " "|| user.surnames == " " || user.email == " "|| user.password == " "|| user.fecha == " "
+     || user.repeatPassword == " "
+    ){
+        alert("No se permiten espacion en blanco");
+        
+      }else if(user.password != user.repeatPassword){
+        alert("Las contrasenas no coinciden");
+      }
+    }
+  
+  
+  
 /* 
 
   deleteUser(id) {
@@ -102,7 +107,7 @@ export class RegisterComponent implements OnInit {
       this.country = '';
      
     })*/
-  }
+  
 
 
 }

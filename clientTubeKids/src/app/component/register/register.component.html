@@ -108,7 +108,7 @@
                 <input type="text" name= "country" [(ngModel)]="user.country" class="form-control" required id="country" placeholder="Country" #country="ngModel">
                 <div *ngIf ="country.errors && (country.dirty || country.touched)" class="alert alert-danger">
                     <div [hidden]="!country.errors.required">
-                      Repeat password is required!
+                      Country is required!
                     </div> 
             </div>
           </div>
