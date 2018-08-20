@@ -10,6 +10,7 @@ import { app_routing }from "./app.routes";
 import { Routes,RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { UsersService } from './services/users.service';
+import { VideosService } from './services/videos.service';
 import { RegisterComponent } from './component/register/register.component';
 import { LoginComponent } from './component/login/login.component';
 import { HomeComponent } from './component/home/home.component';
@@ -20,7 +21,7 @@ import { ManageProfilesComponent } from './component/manage-profiles/manage-prof
 
 import {TrimValueAccessorModule} from 'ng-trim-value-accessor';
 import { AuthGuard } from './auth/auth.guard';
-import { AuthInterceptor } from './auth/auth.interceptor';
+//import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -46,13 +47,13 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     
     
   ],
-  providers: [UsersService,AuthGuard,
+  providers: [UsersService,VideosService/*,AuthGuard,
   ,
   {
     provide : HTTP_INTERCEPTORS,
     useClass : AuthInterceptor,
     multi : true
-  }],
+  }*/],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

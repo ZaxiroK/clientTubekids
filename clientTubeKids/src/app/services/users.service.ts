@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-//import { HttpClientModule } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 
@@ -12,7 +10,7 @@ import {User} from '../models/User';
 })
 export class UsersService {
 
-  constructor(private http: HttpClient, ) { }
+  constructor(private http: HttpClient) { }
   domain: string = 'http://localhost:3000';
 
 

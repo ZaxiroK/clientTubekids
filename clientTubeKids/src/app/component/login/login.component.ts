@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
 },
 (err : HttpErrorResponse)=>{
   this.isLoginError = true;
+  alert("User or password Invalid")
 });
 }
 }
