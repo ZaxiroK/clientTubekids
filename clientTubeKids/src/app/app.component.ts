@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { UsersService} from './services/users.service';
 import { Router } from '@angular/router';
 
@@ -10,10 +10,20 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'clientTubeKids';
+  userClaims :any;
+
+
   constructor(private userServices: UsersService, private router : Router) {
     
   
 }
+
+ngOnInit() {
+  this.userServices.getUserClaims().subscribe((data:any)=>{
+    this.userClaims = data;
+  })
+}
+
 Logout(){
   localStorage.removeItem('userToken');
 this.router.navigate(['/login']);

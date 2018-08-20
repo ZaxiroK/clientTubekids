@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import {HttpModule} from "@angular/http";
@@ -19,6 +19,8 @@ import { MyPlaylistComponent } from './component/my-playlist/my-playlist.compone
 import { ManageProfilesComponent } from './component/manage-profiles/manage-profiles.component';
 
 import {TrimValueAccessorModule} from 'ng-trim-value-accessor';
+import { AuthGuard } from './auth/auth.guard';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,13 @@ import {TrimValueAccessorModule} from 'ng-trim-value-accessor';
     
     
   ],
-  providers: [UsersService],
+  providers: [UsersService,AuthGuard,
+  ,
+  {
+    provide : HTTP_INTERCEPTORS,
+    useClass : AuthInterceptor,
+    multi : true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
