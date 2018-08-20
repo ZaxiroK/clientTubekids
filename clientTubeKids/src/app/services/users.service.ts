@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 //import { HttpClientModule } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
@@ -35,5 +35,10 @@ export class UsersService {
       .map(res => res)
   }
   
+  userAuthentification(email,password){
+    var data = "email="+email+"&password="+password;
+    var reqHeader = new HttpHeaders({'Content-Type':'application/x-www-urlencoded'});
+    return this.http.post(this.domain+'/token',data,{headers:reqHeader});
+  }
 
 }

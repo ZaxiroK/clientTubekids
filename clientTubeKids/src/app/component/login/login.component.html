@@ -26,13 +26,19 @@
             <p>Please enter your email and password
             </p>
           </div>
-          <form id="Login">
+          <div *ngIf="isLoginError" class= "red-text center error-message">
+            <i class="material-icons">error</i>Incorrect email or password
+          </div>
+          <form id="login" #loginForm="ngForm" name="login"(submit) = "login($event)">
             <div class="form-group">
-              <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-            </div>
+              <input type="text" name= "email" [(ngModel)]="user.email" class="form-control"  required email id="email" placeholder="Email" #email="ngModel">
+              <div *ngIf ="email.invalid && email.touched" class="alert alert-danger">
+              Email is invalid!
+              </div>
+           </div>
+           <div class="form-group">
+            <input type="password" name= "password" [(ngModel)]="user.password" class="form-control" required id="password" placeholder="Password" #password="ngModel">
+         </div>
             <div class="forgot">
               <a href="reset.html">Forgot password?
               </a>

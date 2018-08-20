@@ -7,7 +7,7 @@ import {HttpModule} from "@angular/http";
 import {FormsModule} from '@angular/forms'; 
 //routes
 import { app_routing }from "./app.routes";
-
+import { Routes,RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { UsersService } from './services/users.service';
 import { RegisterComponent } from './component/register/register.component';
@@ -19,7 +19,6 @@ import { MyPlaylistComponent } from './component/my-playlist/my-playlist.compone
 import { ManageProfilesComponent } from './component/manage-profiles/manage-profiles.component';
 
 import {TrimValueAccessorModule} from 'ng-trim-value-accessor';
-
 
 @NgModule({
   declarations: [
@@ -40,7 +39,9 @@ import {TrimValueAccessorModule} from 'ng-trim-value-accessor';
     FormsModule,
     ReactiveFormsModule, 
     HttpModule,
-    TrimValueAccessorModule
+    TrimValueAccessorModule,
+    RouterModule,
+    
     
   ],
   providers: [UsersService],
