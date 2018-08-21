@@ -19,9 +19,9 @@ export class AppComponent {
 }
 
 ngOnInit() {
-  this.userServices.getUserClaims().subscribe((data:any)=>{
+  /*this.userServices.getUserClaims().subscribe((data:any)=>{
     this.userClaims = data;
-  })
+  })*/
 }
 
 Logout(){

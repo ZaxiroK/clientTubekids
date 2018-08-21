@@ -1,6 +1,7 @@
 import { Component,OnInit} from '@angular/core';
 import { UsersService} from '../../services/users.service';
 import {User} from '../../models/User';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,7 @@ import {User} from '../../models/User';
 export class RegisterComponent implements OnInit {
   users: User[];
   user = new User();
-  constructor(private userServices: UsersService) {
+  constructor(private userServices: UsersService, private router:Router) {
       /* this.userServices.getUsers()
       .subscribe(users => {
       console.log(users);
@@ -26,21 +27,26 @@ export class RegisterComponent implements OnInit {
   addUser(event) {
       event.preventDefault();
       if (this.validation(this.user) == false) {
+          console.log(this.user);
           this.userServices.addUser(this.user)
               .subscribe(user => {
-                  this.users.push(user);
-                  console.log(this.users);
-                  user = new User;
+                  console.log(user);
+                  this.user = user;
+                  
                   alert("Registro Exitoso, revise su correo para activar su cuenta");
+                  this.router.navigate(['/login'])
               });
       } else {
           alert("registro fallido");
       }
+     // return;
   }
+
+  
   
   validation = function(user) {
       var fechaHoy = new Date();
-      var fechaNacimiento = new Date(user.fecha);
+      var fechaNacimiento = new Date(user.birthdate);
       var edad = fechaHoy.getFullYear() - fechaNacimiento.getFullYear();
       var months = fechaHoy.getMonth() - fechaNacimiento.getMonth();
       if (months <
@@ -50,7 +56,7 @@ export class RegisterComponent implements OnInit {
       }
       if (edad <
           18) {
-          alert("Estimado usuario, solamente persona mayores de edad pueden registrarse");
+          alert("Estimado usuario, solamente personas mayores de edad pueden registrarse");
           return true;
       }
       if (user.password != user.repeatPassword) {

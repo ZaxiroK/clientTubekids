@@ -13,11 +13,23 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   user = new User();
   isLoginError : boolean = false;
-  constructor(private userServices: UsersService, private router:Router ) { }
+  constructor(private userServices: UsersService, private router:Router ) { 
+    
+  }
 
   ngOnInit() {
   }
-
+/*
+  login(event){
+    this.userServices.userAuthentification(this.user.email,this.user.password)
+              .subscribe(user => {
+                  console.log(user);
+                  this.user. = user;
+                  
+                  alert("Registro Exitoso, revise su correo para activar su cuenta");
+                  this.ngOnInit();
+              });
+  }*/
   login(event) {
     event.preventDefault();
     this.userServices.userAuthentification(this.user.email,this.user.password).subscribe((data : any)=>{

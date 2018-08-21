@@ -23,7 +23,7 @@
                </div>
                <form id="Register" #registerForm="ngForm" name="Register"(submit) = "addUser($event)">
                <div class="form-group">
-                  <input type="text" name= "firstName" [(ngModel)]="user.firstName" required minlength="3" maxlength="30" id="firstName" placeholder="First Name" class="form-control" #firstName="ngModel" >
+                  <input type="text" name= "name" [(ngModel)]="user.name" required minlength="3" maxlength="30" id="name" placeholder="First Name" class="form-control" #firstName="ngModel" >
                   <div *ngIf ="firstName.errors && (firstName.dirty || firstName.touched)" class="alert alert-danger">
                      <div [hidden]="!firstName.errors.required">
                         Firstname is required!
@@ -37,7 +37,7 @@
                   </div>
                </div>
                <div class="form-group">
-                  <input type="text" name= "surnames" [(ngModel)]="user.surnames" class="form-control" required maxlength="30" id="surnames" placeholder="Surnames" #surnames="ngModel">
+                  <input type="text" name= "lastname" [(ngModel)]="user.lastname" class="form-control" required maxlength="30" id="lastname" placeholder="Lastname" #surnames="ngModel">
                   <div *ngIf ="surnames.errors && (surnames.dirty || surnames.touched)" class="alert alert-danger">
                      <div [hidden]="!surnames.errors.required">
                         Surnames are required!
@@ -96,7 +96,7 @@
                </div>
                <div class="form-group">
                   <label>Fecha de nacimiento</label>
-                  <input required id="fecha" name= "fecha" [(ngModel)]="user.fecha" type="date" #fecha="ngModel">
+                  <input required id="birthdate" name= "birthdate" [(ngModel)]="user.birthdate" type="date" #fecha="ngModel">
                   <div *ngIf ="fecha.errors && (fecha.dirty || fecha.touched)" class="alert alert-danger">
                      <div [hidden]="!fecha.errors.required">
                         Birthdate  is required!

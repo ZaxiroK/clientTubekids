@@ -46,7 +46,7 @@ import {TrimValueAccessorModule} from 'ng-trim-value-accessor';
     
     
   ],
-  providers: [UsersService,VideosService,ProfilesService/*,AuthGuard,
+  providers: [UsersService,VideosService,ProfilesService,/*AuthGuard,
   ,
   {
     provide : HTTP_INTERCEPTORS,

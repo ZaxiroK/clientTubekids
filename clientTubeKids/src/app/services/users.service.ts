@@ -11,7 +11,7 @@ import {User} from '../models/User';
 export class UsersService {
 
   constructor(private http: HttpClient) { }
-  domain: string = 'http://localhost:3000';
+  domain: string = 'http://localhost:3977';
 
 
   getUsers() {
@@ -21,7 +21,7 @@ export class UsersService {
 
  
   addUser(newUser: User) {
-    return this.http.post<User>(`${this.domain}/api/users`, newUser)
+    return this.http.post<User>(`${this.domain}/api/register`, newUser)
       .map(res => res);
   }
 
@@ -35,28 +35,46 @@ export class UsersService {
       .map(res => res)
   }
   
-  registerUser(user: User){
+  /*registerUser(user: User){
     const body: User ={
-      firstName: user.firstName,
-      surnames: user.surnames,
+      name: user.name,
+      lastname: user.lastname,
       email: user.email,
-      password: user.password,
+      birthdate: user.birthdate,
       country: user.country,
-      fecha: user.fecha
+      password: user.password,
+      user_type: user.user_type
 
     }
     var reqHeader = new HttpHeaders({'No-Auth':'True'});
-    return this.http.post(this.domain+ '/api/user/register',body,{headers:reqHeader});
-  }
+    return this.http.post(this.domain+ '/api/register',body,{headers:reqHeader});
+  }*/
 
-  userAuthentification(email,password){
+  /*userAuthentification(email,password){
+    console.log("hola");
     var data = "email="+email+"&password="+password;
     var reqHeader = new HttpHeaders({'Content-Type':'application/x-www-urlencoded','No-Auth':'True'});
     return this.http.post(this.domain+'/token',data,{headers:reqHeader});
+  }*/
+
+
+  /*userAuthentification(email,password){
+    
+    console.log(email,password);
+    var data = "email="+email+"&password="+password;
+    var reqHeader = new HttpHeaders({'Content-Type':'application/x-www-urlencoded','No-Auth':'True'});
+    return this.http.post(this.domain+'/api/login',data,{headers:reqHeader});
+  }*/
+
+  userAuthentification(email,password) {
+    var data = "email="+email+"&password="+password;
+    return this.http.post<User>(`${this.domain}/api/login`, data)
+      .map(res => res);
   }
+  
   //cambiarle la direccion ulr a como se llama en el back in.
   getUserClaims(){
-    return this.http.get(this.domain+'/api/GetUserClamins');
+    return this.http.get(this.domain+'/api/login');
   }
 
 }
