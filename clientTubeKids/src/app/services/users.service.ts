@@ -4,28 +4,33 @@ import 'rxjs/add/operator/map';
 
 
 import {User} from '../models/User';
+import {UserToken} from '../models/UserToken';
+import { SingIn } from '../models/SignIn';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-
-  constructor(private http: HttpClient) { }
+  
+  constructor(private http: HttpClient) { 
+    
+  }
   domain: string = 'http://localhost:3977';
-
-
+ 
+/*
   getUsers() {
     return this.http.get<User[]>(`${this.domain}/api/users`)
       .map(res => res);
   }
-
+*/
  
   addUser(newUser: User) {
     return this.http.post<User>(`${this.domain}/api/register`, newUser)
       .map(res => res);
   }
 
-  deleteUser(id) {
+  /*deleteUser(id) {
     return this.http.delete<User>(`${this.domain}/api/users/${id}`)
       .map(res => res);
   }
@@ -33,8 +38,18 @@ export class UsersService {
   updateUser(newUser) {
     return this.http.put<User>(`${this.domain}/api/users/${newUser._id}`, newUser)
       .map(res => res)
+  }*/
+ 
+  LoginToken(newUser: SingIn) {
+    return this.http.post<UserToken>(`${this.domain}/api/login`, newUser)
+      .map(user => user);
   }
-  
+
+  SignInUser(newUser: SingIn) {
+    return this.http.post<User>(`${this.domain}/api/login`, newUser)
+      .map(user => user);
+  }
+
   /*registerUser(user: User){
     const body: User ={
       name: user.name,
@@ -58,7 +73,8 @@ export class UsersService {
   }*/
 
 
-  /*userAuthentification(email,password){
+/*
+  userAuthentification(email,password){
     
     console.log(email,password);
     var data = "email="+email+"&password="+password;
@@ -68,7 +84,8 @@ export class UsersService {
 
   userAuthentification(email,password) {
     var data = "email="+email+"&password="+password;
-    return this.http.post<User>(`${this.domain}/api/login`, data)
+    console.log(data);
+    return this.http.post(`${this.domain}/api/login`, data)
       .map(res => res);
   }
   

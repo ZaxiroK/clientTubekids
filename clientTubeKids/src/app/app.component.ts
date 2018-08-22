@@ -26,6 +26,7 @@ ngOnInit() {
 
 Logout(){
   localStorage.removeItem('userToken');
+  sessionStorage.removeItem('user');
 this.router.navigate(['/login']);
 }
 }
