@@ -20,6 +20,7 @@ import { MyPlaylistComponent } from './component/my-playlist/my-playlist.compone
 import { ManageProfilesComponent } from './component/manage-profiles/manage-profiles.component';
 
 import {TrimValueAccessorModule} from 'ng-trim-value-accessor';
+import { PlayList } from './models/PlayList';
 //import { AuthGuard } from './auth/auth.guard';
 //import { AuthInterceptor } from './auth/auth.interceptor';
 
@@ -46,7 +47,7 @@ import {TrimValueAccessorModule} from 'ng-trim-value-accessor';
     
     
   ],
-  providers: [UsersService,VideosService,ProfilesService,/*AuthGuard,
+  providers: [UsersService,VideosService,ProfilesService,PlayList/*AuthGuard,
   ,
   {
     provide : HTTP_INTERCEPTORS,
