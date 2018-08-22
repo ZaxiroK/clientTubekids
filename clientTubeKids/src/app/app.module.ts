@@ -21,8 +21,8 @@ import { ManageProfilesComponent } from './component/manage-profiles/manage-prof
 
 import {TrimValueAccessorModule} from 'ng-trim-value-accessor';
 import { PlayList } from './models/PlayList';
-//import { AuthGuard } from './auth/auth.guard';
-//import { AuthInterceptor } from './auth/auth.interceptor';
+import {SafePipe} from '../app/app.SafePipe';
+import {YoutubePlayerModule} from 'ng2-youtube-player';
 
 @NgModule({
   declarations: [
@@ -33,6 +33,7 @@ import { PlayList } from './models/PlayList';
     InicioComponent,
     MyPlaylistComponent,
     ManageProfilesComponent,
+    SafePipe,
     
   ],
   imports: [
@@ -44,6 +45,7 @@ import { PlayList } from './models/PlayList';
     HttpModule,
     TrimValueAccessorModule,
     RouterModule,
+    YoutubePlayerModule,
     
     
   ],

@@ -1,0 +1,70 @@
+
+
+<html>
+  <head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js">
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <script src="jquery-3.3.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+  </head>
+  
+  
+
+<div class="mn-top">
+  <h3>PLAYLIST GENERAL</h3>
+ 
+  <br>
+
+</div>
+
+
+
+<!--<div class="col-md-4 fl" >
+  <div class="mn-top">
+      <button type="button" class="btn btn-success" >ADD TO MY PLAYLIST</button>
+      <h2>Subido por: Wilmer</h2>
+      <h3>11+</h3>
+      
+  </div>
+  <div class="card profile-card-1">
+<ul class="list-unstyled video-list-thumbs row">
+  <li class="col-lg-3 col-sm-4 col-xs-6">
+
+      <iframe width="568px" height="368px" src="https://www.youtube.com/embed/RX0VtkQOddw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      
+  </li>
+</ul>
+
+</div>
+</div>-->
+     
+
+
+
+<div class="col-md-4 fl" *ngFor="let video of videos">
+  <div class="mn-top" >
+      <button type="button" class="btn btn-success" >ADD TO MY PLAYLIST</button>
+      <h3>{{video.name}}</h3>
+      
+      
+  </div>
+  <div class="card profile-card-1">
+<ul class="list-unstyled video-list-thumbs row">
+  <li class="col-lg-3 col-sm-4 col-xs-6">
+    <!--<iframe width="568px%" height="368px" [src]="video.url_youtube | safe"></iframe>-->
+      <iframe width="568px" height="368px" [src]="sanitizer.bypassSecurityTrustResourceUrl(video.url_youtube)" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>-->
+      
+      
+  </li>
+</ul>
+
+</div>
+
+</div>
+
+
+
+</html>

@@ -1,0 +1,15 @@
+.mn-top{
+    background-color: #fff;
+    padding-top: 63px;
+    padding-bottom: 3px;
+    text-align: center;
+    font-size: 1.1em;
+}
+.mn-top a{
+    color: #666;
+    margin-left: 10px;
+    padding-bottom: 13px;
+}
+.mn-top a:hover{
+    border-bottom: 3px solid #cc181e;
+}
