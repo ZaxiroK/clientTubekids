@@ -80,14 +80,50 @@ export class MyPlaylistComponent implements OnInit {
                 });
         }
 
+        /*
+        editProfile(event) {
+            event.preventDefault();
+            console.log(this.profile.name,this.profile.pin,this.profile.edad,this.profile.username);
+            
+                var ut = localStorage.getItem("userToken");
+                var ul = JSON.parse(sessionStorage.getItem("user"));
+                var uid = this.profile._id;
+                var profileEdit = new Profile;
+                profileEdit.name = this.profile.name;
+                profileEdit.username = this.profile.username;
+                profileEdit.edad = this.profile.edad;
+                profileEdit.pin = this.profile.pin;
+                profileEdit.user = ul.user._id;
+                
+                this.profileServices.editProfile(profileEdit,uid, ut)
+                    .subscribe(profile => {
+                        console.log(this.profiles);
+                        profile =  profile;
+                        alert("Edit exitoso");
+                    });
+        }*/
         
-    /*getPlaylist(){
-        var ut = localStorage.getItem("userToken");
-        this.playlistServices.getPlaylistS(ut)
-        .subscribe(playlist =>{
-            this.playlist = playlist;
-        })
-    }  */ 
+        deleteVideo(event) {
+            event.preventDefault();
+            
+            
+                var ut = localStorage.getItem("userToken");
+                //var ul = JSON.parse(sessionStorage.getItem("user"));
+                var uid = this.video._id;
+               /* var profileEdit = new Profile;
+                profileEdit.name = this.profile.name;
+                profileEdit.username = this.profile.username;
+                profileEdit.edad = this.profile.edad;
+                profileEdit.pin = this.profile.pin;
+                profileEdit.user = ul.user._id;*/
+                
+                this.videoServices.deleteVideo(uid, ut)
+                    .subscribe(video => {
+                        console.log(this.videos);
+                        video =  video;
+                        alert("Delete exitoso");
+                    });
+        }
        
 }
 
