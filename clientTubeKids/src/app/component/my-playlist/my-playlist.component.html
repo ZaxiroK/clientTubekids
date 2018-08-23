@@ -23,6 +23,7 @@
   <br>
   <label>Select Playlist</label>
   <br>
+  
   <select >
     <option *ngFor="let playlist of playlists" [value]="playlist._id">
       {{playlist.name}}</option>
@@ -32,8 +33,12 @@
   <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">ADD NEW VIDEO</button>
   <br>
   <br>
-  <br>
-  <br>
+  <button type="button" class="btn btn-success Small" data-toggle="modal" data-target="#myEdit" >EDIT</button>
+    <br>
+    <br>
+    <button type="button" class="btn btn-danger Small" data-toggle="modal" data-target="#myDelete" >DELETE</button>
+    <br>
+    <br>
   <INPUT type=submit  id="x" name=btnG VALUE="FIND VIDEO" />
   <INPUT TYPE=text id="s" name="q" value="" size="50" />
   
@@ -128,7 +133,7 @@
     <div class="modal-dialog">
   
       <!-- Modal content-->
-      <div class="modal-content" *ngFor="let playlist of playlists">
+      <div class="modal-content" >
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">CANCEL</h4>
@@ -146,6 +151,18 @@
                   </p>
                 </div>
                 <form id="register" #registerForm="ngForm" name="Register"(submit) = "addVideo($event)">
+                    <div>
+                        <div class="form-group">
+                      <select [(ngModel)]="video.playlist" [ngModelOptions]="{standalone: true}">
+                        <option *ngFor="let playlist of playlists" [value]="playlist._id">
+                          {{playlist.name}}</option>
+                      </select>
+                      </div>
+    
+
+                      
+                      
+                     </div>
                   <div class="form-group">
                     <input type="text" name= "videoName" [(ngModel)]="video.name" required  id="videoName" placeholder="Video name" class="form-control" #videoNameR="ngModel" >
                     <div *ngIf ="videoNameR.errors && (videoNameR.dirty || videoNameR.touched)" class="alert alert-danger">
@@ -155,14 +172,7 @@
                        
                     </div>
                  </div>
-                 <div>
-                    <div class="form-group">
-                  <select [(ngModel)]="video.playlist" [ngModelOptions]="{standalone: true}">
-                    <option *ngFor="let playlist of playlists" [value]="playlist._id">
-                      {{playlist.name}}</option>
-                  </select>
-                  </div>
-                 </div>
+                 
                  <div class="form-group">
                   <input type="url" name="input" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/" [(ngModel)]="video.url_youtube" required #urlR="ngModel">
                   <div *ngIf ="urlR.errors && (urlR.dirty || urlR.touched)" class="alert alert-danger">

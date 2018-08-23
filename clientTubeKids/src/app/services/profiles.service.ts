@@ -50,7 +50,7 @@ export class ProfilesService {
 
   deleteProfile(id:string, token: string) {
     console.log("pase por aca");
-    return this.http.delete<Profile>(`${this.domain}/api/update-profile/`+id,{headers: { Authorization: token}})
+    return this.http.delete<Profile>(`${this.domain}/api/delete-profile/`+id,{headers: { Authorization: token}})
       .map(res => res);
   }
 
